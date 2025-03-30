@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# VSCode Variaves  
+.vscode/
+mover_dist.sh
