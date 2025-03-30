@@ -1,0 +1,117 @@
+---
+// Ex: src/pages/login-circulo.astro
+// Você pode importar um logo para colocar dentro do círculo, se quiser
+// import logo from '../assets/logo.png';
+import "../../styles/global.css";
+import { Picture } from "astro:assets";
+import logo from "../../assets/logo.png";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Login Page">
+  <div class="flex items-center justify-center min-h-screen">
+    {/* O Cartão de Login */}
+    <div
+      class="relative /* Contexto para posicionamento absoluto do círculo */
+        w-full max-w-sm /* Largura total em telas pequenas, máxima de ~384px */
+        bg-white /* Fundo branco */
+        rounded-xl /* Bordas bem arredondadas */
+        shadow-xl /* Sombra pronunciada */
+        p-8 /* Padding geral */
+        pt-20 /* Padding SUPERIOR MAIOR para dar espaço ao círculo */"
+    >
+      {/* Círculo Decorativo */}
+      <div
+        class="absolute /* Posicionamento absoluto */
+          w-20 h-20 /* Tamanho do círculo (ajuste conforme necessário) */
+          bg-white
+          rounded-full /* Forma redonda */
+          shadow-md /* Sombra suave */
+          top-0 /* Alinha o TOPO do círculo com o TOPO do cartão */
+          left-1/2 /* Alinha a ESQUERDA do círculo com o MEIO horizontal do cartão */
+          -translate-x-1/2 /* Move o círculo para a ESQUERDA pela metade da LARGURA dele (centraliza H) */
+          -translate-y-1/2 /* Move o círculo para CIMA pela metade da ALTURA dele (faz sobrepor a borda) */
+          flex items-center justify-center /* Opcional: Para centralizar algo DENTRO do círculo */"
+      >
+        {/* Conteúdo DENTRO do círculo (opcional) */}
+        {/* <img src={logo.src} alt="Logo" class="w-16 h-16" /> */}
+        <Picture src={logo} alt="" class="w-10 h-10" />
+      </div>
+
+      {
+        /* Título e Formulário (Empurrados para baixo pelo padding-top do cartão) */
+      }
+      <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">
+        login
+      </h2>
+      <form class="space-y-5">
+        <div>
+          <div class="bg-black mr-64 px-3 py-1 rounded-full">
+            <label
+              for="email"
+              class="grid text-sm font-medium text-white hover:text-blue-500"
+              >E-mail</label
+            >
+          </div>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="mt-1 block w-full border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <div class="bg-black mr-64 px-3 py-1 rounded-full">
+            <label
+              for="password"
+              class="block text-sm font-medium text-white hover:text-blue-500"
+              >Senha</label
+            >
+          </div>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="mt-1 block w-full border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <div class="flex items-center">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-gray-900">
+              Lembrar de mim</label
+            >
+          </div>
+          <div>
+            <a
+              href="#"
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Esqueceu a senha?
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-5"
+          >
+            Entrar
+          </button>
+        </div>
+      </form>
+    </div>
+    {/* Fim do Cartão de Login */}
+  </div>
+</Layout>

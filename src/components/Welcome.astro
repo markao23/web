@@ -1,0 +1,82 @@
+---
+// src/components/Navbar.astro
+import logo from "../assets/logo.png";
+import "../styles/global.css";
+import { Image } from "astro:assets";
+
+const menuItems = [
+  { text: "perfil", href: "/perfil" },
+  { text: "Calendario", href: "/calendatio" },
+  { text: "Pagamento", href: "/pagamento" },
+  { text: "logout", href: "/login" },
+];
+---
+
+<nav class="bg-white shadow-2xl py-3 sticky top-0 z-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <div class="flex items-center -ml-50">
+      <a
+        href="/"
+        class="flex items-center text-xl font-bold mr-5 text-gray-800 hover:text-blue-600 transition-colors"
+      >
+        <Image class="h-9 w-9" src={logo} alt="logo" />
+        {/*Altura controlada*/}
+        Arca
+      </a>
+      <ul class="flex items-center space-x-4">
+        {
+          menuItems.map((item) => (
+            <li class="h-full">
+              <a
+                href={item.href}
+                class:list={[
+                  "text-gray-700 hover:text-blue-600 font-medium px-2 py-2 rounded-md transition-colors duration-200",
+                  'relative after:content-[""] after:absolute after:left-0 after:bottom-1 after:w-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300',
+                  Astro.url.pathname === item.href
+                    ? "text-blue-700 after:w-full"
+                    : "hover:after:w-full",
+                ]}
+              >
+                <span class="relative z-10 text-base">{item.text}</span>{" "}
+                {/* Usei text-base */}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="flex items-center">
+      <form
+        id="libravatarForm"
+        action="/process"
+        method="post"
+        class="absolute flex items-center ml-39"
+      >
+        <div class="flex justify-center items-center">
+          <img
+            id="libravatarImagem"
+            src=""
+            alt=""
+            class="w-6 h-6 object-cover rounded-full"
+          />
+        </div>
+        <span>
+          <a href="/login">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="h-6 w-6 text-gray-700 hover:text-blue-600"
+            >
+              <path
+                d="M17.998 3C18.5503 3 18.998 3.44772 18.998 4V20C18.998 20.5523 18.5503 21 17.998 21H5.99805C5.44576 21 4.99805 20.5523 4.99805 20V4C4.99805 3.44772 5.44576 3 5.99805 3H17.998ZM16.998 5H6.99805V19H16.998V5ZM14.998 11V13H12.998V11H14.998Z"
+              ></path>
+              </a>
+            </svg>
+          </a>
+        </span>
+      </form>
+    </div>
+  </div>
+</nav>
